@@ -17,6 +17,7 @@ RentJoy-UI-Tests/
 │   │   └── page_utils.py      # 頁面操作工具
 │   ├── conftest.py           # pytest 設定檔
 │   └── test_basic.py         # 主要測試案例
+├── reports/                  # 測試報告資料夾
 ├── .pytest_cache/            # pytest 快取資料夾
 ├── __pycache__/             # Python 編譯快取
 ├── state.json               # 瀏覽器狀態儲存檔
@@ -89,10 +90,48 @@ playwright install
 
 ## 執行測試
 
-執行測試流程：
+### 執行所有測試並生成報告
+```bash
+python run_tests.py
+```
+
+### 執行特定測試
 ```bash
 pytest tests/test_basic.py
 ```
+
+### 查看測試報告
+- 測試報告會自動生成在 `reports` 資料夾中
+- 報告文件名格式為 `report_YYYYMMDD_HHMMSS.html`
+- 使用瀏覽器打開報告文件即可查看詳細結果
+
+## 測試報告功能
+- 測試用例執行結果
+- 失敗原因和錯誤堆疊
+- 執行時間統計
+- 環境信息
+- 測試日誌
+
+
+### 虛擬環境相關
+- 如果 `python -m venv venv` 失敗，可能需要先安裝 `venv` 模組：
+  ```bash
+  # Ubuntu/Debian
+  sudo apt-get install python3-venv
+  
+  # macOS
+  brew install python
+  ```
+
+### Playwright 相關
+- 如果 Playwright 安裝失敗，可能需要安裝系統依賴：
+  ```bash
+  # Ubuntu/Debian
+  sudo apt-get install libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libdbus-1-3 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2
+  
+  # macOS
+  brew install libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libdbus-1-3 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2
+  ```
 
 ## 注意事項
 
@@ -100,6 +139,7 @@ pytest tests/test_basic.py
 - `state.json` 用於儲存瀏覽器狀態，建議加入 `.gitignore`
 - 測試執行時會開啟瀏覽器視窗，可以通過修改 `conftest.py` 中的 `headless` 參數來控制
 - 每次更新專案後，建議執行 `pip install -r requirements.txt` 確保依賴套件是最新的
+- 測試報告會自動生成在 `reports` 資料夾中，建議定期清理舊報告
 
 ## 開發指南
 
