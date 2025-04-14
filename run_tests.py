@@ -54,6 +54,7 @@ def main():
         # 批次執行所有測試文件
         test_files = [
             "tests/test_basic.py",
+            "tests/test_error_process.py",
             # 於此加入更多測試文件
         ]
         for test_file in test_files:
